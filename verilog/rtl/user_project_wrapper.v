@@ -22,10 +22,6 @@
  * This wrapper enumerates all of the pins available to the
  * user for the user project.
  *
- * An example user project is provided in this wrapper.  The
- * example should be removed and replaced with the actual
- * user project.
- *
  *-------------------------------------------------------------
  */
 
@@ -81,42 +77,39 @@ module user_project_wrapper #(
 /*--------------------------------------*/
 /* User project is instantiated  here   */
 /*--------------------------------------*/
+    wire        mem_wr;
+    wire [7:0]  mem_addr;
+    
+    wire [31:0] imem_data;
 
-user_proj_example mprj (
+    user_proj_example mprj (
 `ifdef USE_POWER_PINS
-	.vccd1(vccd1),	// User area 1 1.8V power
-	.vssd1(vssd1),	// User area 1 digital ground
+        .vccd1(vccd1),	// User area 1 1.8V supply
+        .vssd1(vssd1),	// User area 1 digital ground
 `endif
+        .OUT(wbs_dat_o[9:0]),
+        .CLK(wb_clk_i),
+        .reset(wb_rst_i),
 
-    .wb_clk_i(wb_clk_i),
-    .wb_rst_i(wb_rst_i),
+        .mem_wr(mem_wr),
+        .mem_addr(mem_addr),
+        .init_en(wbs_sel_i[0]),
+        .init_addr(wbs_adr_i[7:0]),
+        .imem_data(imem_data)
+    );
 
-    // MGMT SoC Wishbone Slave
-
-    .wbs_cyc_i(wbs_cyc_i),
-    .wbs_stb_i(wbs_stb_i),
-    .wbs_we_i(wbs_we_i),
-    .wbs_sel_i(wbs_sel_i),
-    .wbs_adr_i(wbs_adr_i),
-    .wbs_dat_i(wbs_dat_i),
-    .wbs_ack_o(wbs_ack_o),
-    .wbs_dat_o(wbs_dat_o),
-
-    // Logic Analyzer
-
-    .la_data_in(la_data_in),
-    .la_data_out(la_data_out),
-    .la_oenb (la_oenb),
-
-    // IO Pads
-
-    .io_in (io_in),
-    .io_out(io_out),
-    .io_oeb(io_oeb),
-
-    // IRQ
-    .irq(user_irq)
-);
+    sram_32_256_sky130A mem (
+`ifdef USE_POWER_PINS
+        .vccd1(vccd1),	// User area 1 1.8V supply
+        .vssd1(vssd1),	// User area 1 digital ground
+`endif
+        .clk0(wb_clk_i),
+        .csb0(1'b0),
+        .web0(mem_wr),
+        .addr0(mem_addr),
+        .din0(wbs_dat_i),
+        .dout0(imem_data)
+    );
 
 endmodule	// user_project_wrapper
 
