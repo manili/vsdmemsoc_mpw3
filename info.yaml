@@ -1,0 +1,22 @@
+---
+project:
+  description: "VSDMemSoC is a small SoC including a RISCV-based processor named RVMYTH and an external 1KB SRAM Instruction Memory."
+  foundry: "SkyWater"
+  git_url: "https://github.com/manili/vsdmemsoc_mpw3.git"
+  organization: "VLSI System Design"
+  organization_url: "https://www.vlsisystemdesign.com"
+  owner: "Mufutau Akuruyejo, Mohammad A. Nili"
+  process: "SKY130"
+  project_name: "VSDMemSoC"
+  project_id: "87654321"
+  tags:
+    - "MPW3"
+    - "VSD"
+    - "RVMYTH"
+    - "OpenRAM"
+    - "VSDMemSoC"
+  category: "Test Harness"
+  top_level_netlist: "caravel/verilog/gl/caravel.v"
+  user_level_netlist: "verilog/gl/user_project_wrapper.v"
+  version: "1.00"
+  cover_image: "docs/source/_static/vsdmemsoc_layout.png"
