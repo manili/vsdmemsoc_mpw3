@@ -77,6 +77,8 @@ module user_project_wrapper #(
 /*--------------------------------------*/
 /* User project is instantiated  here   */
 /*--------------------------------------*/
+    wire global_clk = wb_clk_i;
+
     wire        mem_wr;
     wire [7:0]  mem_addr;
     
@@ -87,14 +89,14 @@ module user_project_wrapper #(
         .vccd1(vccd1),	// User area 1 1.8V supply
         .vssd1(vssd1),	// User area 1 digital ground
 `endif
-        .OUT(wbs_dat_o[9:0]),
-        .CLK(wb_clk_i),
-        .reset(wb_rst_i),
+        .OUT(la_data_out[73:64]),
+        .CLK(global_clk),
+        .reset(la_data_in[32]),
 
         .mem_wr(mem_wr),
         .mem_addr(mem_addr),
-        .init_en(wbs_sel_i[0]),
-        .init_addr(wbs_adr_i[7:0]),
+        .init_en(la_data_in[36]),
+        .init_addr(la_data_in[51:44]),
         .imem_data(imem_data)
     );
 
@@ -103,11 +105,11 @@ module user_project_wrapper #(
         .vccd1(vccd1),	// User area 1 1.8V supply
         .vssd1(vssd1),	// User area 1 digital ground
 `endif
-        .clk0(wb_clk_i),
-        .csb0(1'b0),
+        .clk0(global_clk),
+        .csb0(la_data_in[40]),
         .web0(mem_wr),
         .addr0(mem_addr),
-        .din0(wbs_dat_i),
+        .din0(la_data_in[31:0]),
         .dout0(imem_data)
     );
 

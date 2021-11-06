@@ -22,7 +22,11 @@
     `default_nettype wire
     `include "gl/user_project_wrapper.v"
     `include "gl/user_proj_example.v"
+    `include "sram_32_256_sky130A.v"
 `else
     `include "user_project_wrapper.v"
     `include "user_proj_example.v"
+    `include "sram_32_256_sky130A.v"
+    `include "rvmyth.v"
+    `include "clk_gate.v"
 `endif

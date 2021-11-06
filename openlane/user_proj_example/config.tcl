@@ -26,7 +26,7 @@ set ::env(VERILOG_FILES) "\
 	$script_dir/../../verilog/rtl/clk_gate.v \
 	$script_dir/../../verilog/rtl/rvmyth.v"
 set ::env(VERILOG_INCLUDE_DIRS) "\
-	$script_dir/../../verilog/include"
+	$script_dir/../../verilog/rtl/include"
 
 set ::env(DESIGN_IS_CORE) 0
 

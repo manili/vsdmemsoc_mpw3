@@ -16,7 +16,7 @@ module sram_32_256_sky130A(
   parameter RAM_DEPTH = 1 << ADDR_WIDTH;
   // FIXME: This delay is arbitrary.
   parameter DELAY = 3 ;
-  parameter VERBOSE = 1 ; //Set to 0 to only display warnings
+  parameter VERBOSE = 0 ; //Set to 0 to only display warnings
   parameter T_HOLD = 1 ; //Delay to hold dout value after posedge. Value is arbitrary
 
 `ifdef USE_POWER_PINS
