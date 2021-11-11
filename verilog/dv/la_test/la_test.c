@@ -22,32 +22,12 @@
 /*
 	MPRJ LA Test:
                 - Sets MPRJ initial data through LA[31:0]
-		- Sets MPRJ clk through LA[32]
-		- Sets MPRJ rst through LA[36]
-                - Sets MPRJ initial write enable through LA[40]
+		- Sets MPRJ rst through LA[32]
+		- Sets MPRJ wen through LA[36]
+		- Sets MPRJ csb through LA[40]
                 - Sets MPRJ initial address through LA[51:44]
 		- Observes 10-bit result of the initial program (e.g. sum of 0 to 9) which will be written on r17 through LA[73:64]
 */
-
-int clk = 0;
-
-int getIMemContent(int addr) {
-        return 
-                addr == 0x0 ? 0b00000000000100000000010010010011 :
-		addr == 0x1 ? 0b00000010101100000000010100010011 :
-		addr == 0x2 ? 0b00000000000000000000010110010011 :
-		addr == 0x3 ? 0b00000000000000000000100010010011 :
-		addr == 0x4 ? 0b00000000101110001000100010110011 :
-		addr == 0x5 ? 0b00000000000101011000010110010011 :
-		addr == 0x6 ? 0b11111110101001011001110011100011 :
-		addr == 0x7 ? 0b00000000101110001000100010110011 :
-		addr == 0x8 ? 0b01000000101110001000100010110011 :
-		addr == 0x9 ? 0b01000000100101011000010110110011 :
-		addr == 0xA ? 0b11111110100101011001110011100011 :
-		addr == 0xB ? 0b01000000101110001000100010110011 :
-		addr == 0xC ? 0b11111110000000000000000011100011 :
-	                      0b00000000000000000000000000000000 ;
-}
 
 void main()
 {
